@@ -1,18 +1,18 @@
 import { useState } from "react";
 import SwimLanes from "./SwimLanes.tsx";
+import { Swimlane } from "../types/index.ts";
 
 function Canvas() {
-    const [swimLanes, SetSwimLanes] = useState([]);
-    const handleRemoveSwimlane = (ind) => {
-        SetSwimLanes((prevData) => {
+    const [swimLanes, setSwimLanes] = useState<Swimlane[]>([]);
+    const handleRemoveSwimlane = (ind: number) => {
+        setSwimLanes((prevData) => {
             const newData = [...prevData];
             newData.splice(ind, 1);
             return newData;
         });
     };
     const handleAddSwimlane = () => {
-        const l = swimLanes.length;
-        SetSwimLanes((prev) => [...prev, { name: "Swimlane", id: l + 1 }]);
+        setSwimLanes((prev) => [...prev, { name: "Swimlane" }]);
     };
     return (
         <div className="flex flex-col w-[100%] h-[100%]">
@@ -26,7 +26,6 @@ function Canvas() {
                     return (
                         <SwimLanes
                             name={swimlane.name}
-                            id={swimlane.id}
                             handleRemoveSwimlane={() =>
                                 handleRemoveSwimlane(ind)
                             }

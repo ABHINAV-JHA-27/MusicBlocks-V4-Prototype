@@ -1,7 +1,6 @@
 export interface Swimlane {
-    id: string;
     name: string;
-    blockGroup: BlockType[];
+    blockGroup?: BlockType[];
 }
 
 export interface BlockType {
