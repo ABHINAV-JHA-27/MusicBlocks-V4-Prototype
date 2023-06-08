@@ -10,38 +10,36 @@ interface SwimLanesProps {
 function SwimLanes({ name, handleRemoveSwimlane }: SwimLanesProps) {
     const [show, setShow] = useState(true);
     const [blocksData, setBlocksData] = useState<BlockType[]>([]);
-    const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const blockRefs = useRef<HTMLDivElement[]>([]);
 
-    const handleDrop = (targetIndex: number) => {
-        return (e: DragEvent) => {
-            e.preventDefault();
-            const val = e.dataTransfer?.getData("block");
-            if (!val) {
-                return;
-            }
-            const parsedData: BlockType = JSON.parse(val);
-            if (parsedData.parent === "swimlane") {
-                setBlocksData((prevData) => {
-                    const newData = [...prevData];
-                    if (newData.length === 0) {
-                        newData.push(parsedData);
-                    } else {
-                        newData.splice(targetIndex, 0, parsedData);
-                    }
-                    return newData;
-                });
-            } else if (parsedData.parent === "palette") {
-                setBlocksData((prevData) => {
-                    const newData = [...prevData];
-                    if (newData.length === 0) {
-                        newData.push(parsedData);
-                    } else {
-                        newData.splice(targetIndex, 0, parsedData);
-                    }
-                    return newData;
-                });
-            }
-        };
+    const handleDrop = (e: DragEvent, targetIndex: number) => {
+        e.preventDefault();
+        const val = e.dataTransfer?.getData("block");
+        if (!val) {
+            return;
+        }
+        const parsedData: BlockType = JSON.parse(val);
+        if (parsedData.parent === "swimlane") {
+            setBlocksData((prevData) => {
+                const newData = [...prevData];
+                if (newData.length === 0) {
+                    newData.push(parsedData);
+                } else {
+                    newData.splice(targetIndex, 0, parsedData);
+                }
+                return newData;
+            });
+        } else if (parsedData.parent === "palette") {
+            setBlocksData((prevData) => {
+                const newData = [...prevData];
+                if (newData.length === 0) {
+                    newData.push(parsedData);
+                } else {
+                    newData.splice(targetIndex, 0, parsedData);
+                }
+                return newData;
+            });
+        }
     };
     const handleDragOver: React.DragEventHandler<HTMLDivElement> = (e) => {
         e.preventDefault();
@@ -77,7 +75,7 @@ function SwimLanes({ name, handleRemoveSwimlane }: SwimLanesProps) {
             {show ? (
                 <div
                     className="flex-1 flex-col h-[90vh] bg-slate-400/10 rounded-[10px] space-y-8 p-3"
-                    onDrop={(e) => handleDrop(calc(e.clientY))}
+                    onDrop={(e) => handleDrop(e, calc(e.clientY))}
                     onDragOver={handleDragOver}
                 >
                     <div className="flex justify-between">
