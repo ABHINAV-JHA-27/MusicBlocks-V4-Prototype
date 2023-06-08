@@ -1,7 +1,7 @@
 import Block from "./Blocks";
 import Blocks from "../Data/Blocks";
 
-function Palette(props) {
+function Palette() {
     return (
         <div className="bg-[rgba(8,24,168,0.5)] p-5 h-[60vh] m-2 rounded-[10px]">
             Palette
@@ -16,7 +16,9 @@ function Palette(props) {
                             isLastBlock={block.isLastBlock}
                             id={ind}
                             showDelete={false}
-                            handleRemove={() => {}}
+                            handleRemove={() => {
+                                console.log("removed");
+                            }}
                         />
                     );
                 })}

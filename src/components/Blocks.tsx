@@ -6,7 +6,6 @@ interface BlockProps {
     parent: string;
     showDelete: boolean;
     handleRemove: (id: number) => void;
-    parentId: number;
 }
 
 function Block({
