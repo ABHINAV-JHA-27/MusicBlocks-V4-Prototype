@@ -1,5 +1,5 @@
 import Block from "./Blocks";
-import Blocks from "../Data/Blocks";
+import Blocks from "../assets/Data/Blocks";
 
 function Palette() {
     return (
