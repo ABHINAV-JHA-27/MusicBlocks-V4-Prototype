@@ -15,7 +15,6 @@ function Palette(props) {
                             color={block.color}
                             isLastBlock={block.isLastBlock}
                             id={ind}
-                            parentId={ind}
                             showDelete={false}
                             handleRemove={() => {}}
                         />

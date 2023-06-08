@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SwimLanes from "./SwimLanes";
+import SwimLanes from "./SwimLanes.tsx";
 
 function Canvas() {
     const [swimLanes, SetSwimLanes] = useState([]);

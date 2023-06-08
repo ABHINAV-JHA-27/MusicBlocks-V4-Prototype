@@ -1,4 +1,13 @@
-import { DragEvent, DragEventHandler, useEffect, useRef } from "react";
+interface BlockProps {
+    name: string;
+    color: string;
+    isLastBlock: boolean;
+    id: number;
+    parent: string;
+    showDelete: boolean;
+    handleRemove: (id: number) => void;
+    parentId: number;
+}
 
 function Block({
     name,
@@ -8,8 +17,7 @@ function Block({
     parent,
     showDelete,
     handleRemove,
-    parentId,
-}) {
+}: BlockProps) {
     const blockClass = `rounded min-h-[100px] w-[250px] p-4 shadow mb-2`;
     const handleDrag = (e, _block) => {
         e.dataTransfer.setData("block", JSON.stringify(_block));
@@ -42,7 +50,6 @@ function Block({
                     isLastBlock,
                     id,
                     parent,
-                    parentId,
                 })
             }
         >

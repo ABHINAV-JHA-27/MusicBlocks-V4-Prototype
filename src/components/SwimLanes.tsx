@@ -11,7 +11,7 @@ function SwimLanes(props) {
         e.preventDefault();
         const val = e.dataTransfer.getData("block");
         const parsedData = JSON.parse(val);
-        if (parsedData.parent == "swimlane" && parsedData.parentId == id) {
+        if (parsedData.parent == "swimlane") {
             //dont duplicate but move to index
             setBlocksData((prevData) => {
                 const newData = [...prevData];
@@ -33,9 +33,6 @@ function SwimLanes(props) {
                 }
                 return newData;
             });
-        } else {
-            // if moving from one swimlanes to other
-            return;
         }
     };
     const handleDragOver = (e: DragEvent) => {
