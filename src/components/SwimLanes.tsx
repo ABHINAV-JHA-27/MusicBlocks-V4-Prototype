@@ -9,8 +9,8 @@ interface SwimLanesProps {
 
 function SwimLanes({ name, handleRemoveSwimlane }: SwimLanesProps) {
     const [show, setShow] = useState(true);
-    const [blocksData, setBlocksData] = useState([]);
-    const blockRefs = useRef([]);
+    const [blocksData, setBlocksData] = useState<BlockType[]>([]);
+    const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const handleDrop = (targetIndex: number) => {
         return (e: DragEvent) => {
@@ -59,6 +59,9 @@ function SwimLanes({ name, handleRemoveSwimlane }: SwimLanesProps) {
 
     const calc = (clientY: number) => {
         return blockRefs.current.reduce((targetIndex, blockRef, index) => {
+            if (!blockRef) {
+                return targetIndex;
+            }
             const { top, height } = blockRef.getBoundingClientRect();
             const blockCenterY = top + height / 2;
 
