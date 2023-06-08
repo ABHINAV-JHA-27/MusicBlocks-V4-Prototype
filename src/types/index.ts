@@ -1,13 +1,13 @@
 export interface Swimlane {
     id: string;
     name: string;
-    blockGroup: Block[];
+    blockGroup: BlockType[];
 }
 
-export interface Block {
+export interface BlockType {
     name: string;
     color: string;
     isLastBlock: boolean;
-    id: string;
+    id: number;
     parent: string;
 }
