@@ -1,4 +1,4 @@
-import { Swimlane } from "./../types/index";
+import { Swimlane } from "../old/types/index";
 import { proxy } from "valtio";
 
 const store = proxy({
