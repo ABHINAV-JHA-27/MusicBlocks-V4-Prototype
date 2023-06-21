@@ -1,13 +1,28 @@
-import { NoteBlock } from "../lib/brickNode";
+import { BlockFactory } from "../lib/BlockFactory";
 
-const Brick = () => {
-    const context = new NoteBlock();
-    // console.log(context.render());
+type BlockType = "Block" | "Expression" | "Statement" | "Value";
+interface BlockProps {
+    label: string;
+    type: BlockType;
+    args?: { arg1: string; arg2: string };
+}
 
-    // return <>{context.render()}</>;
+const Brick = (props: BlockProps) => {
+    const context = new BlockFactory(
+        props.type,
+        props.type,
+        props?.args as { arg1: string; arg2: string }
+    ).createBlock(props.label);
+
+    console.log(context);
+
     return (
-        <div className="flex rounded h-[100px] w-[250px] shadow mb-2 bg-[#96DED1] items-center justify-center m-5">
-            {context.name}
+        <div
+            className="flex rounded h-[100px] w-[250px] shadow mb-2 items-center justify-center m-5"
+            style={{ backgroundColor: context.color }}
+        >
+            <p>{context.name}</p>
+            {/* <p>{props.type == "Value" ? context.value : context.args}</p> */}
         </div>
     );
 };

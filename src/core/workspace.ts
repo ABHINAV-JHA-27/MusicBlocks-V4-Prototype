@@ -37,6 +37,5 @@ abstract class Workspace {
 export class WorkspaceContainer extends Workspace {
     constructor(name: string) {
         super(name);
-        console.log("WorkspaceContainer created");
     }
 }
